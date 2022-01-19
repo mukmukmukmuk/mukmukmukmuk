@@ -1,0 +1,147 @@
+import logo from './logo.svg';
+import './App.css';
+import {useEffect, useState} from 'react';
+import styled from 'styled-components';
+
+const CalculatorWrap = styled.div`
+  background-color: pink;
+  width: 500px;
+  height: 809px;
+  border-radius:7%;
+`
+
+const EmptySpace =styled.div`
+  width: 470px;
+  height: 120px;
+  margin-left:10px;
+  margin-right:10px;
+`
+
+const CalculatorResult=styled.div`
+  background-color: #B1F4F5;
+  width: 470px;
+  height:130px;
+  font-size: 6em;
+  color: white;
+  text-align: right;
+  margin-left:10px;
+  margin-right:10px;
+  border-radius:20px;
+  font-weight:600;
+`
+
+const CalculatorNumber = styled.div`
+  background-color: #EA97D9;
+  width: 110px;
+  height: 90px;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 4em;
+  font-weight:600;
+  border-radius:20px;
+  margin-top: 15px;
+`
+
+function App() {
+  const [result,setResult]=useState(0);
+  const [temp,setTemp]=useState(0);
+  function onPlusClick(){
+    setResult(function(prev){
+      return temp+prev;
+    })
+  }
+
+  function onMinusClick(){
+    setResult(function(prev){
+      return temp-prev;
+    })
+  }
+
+  function onTimesClick(){
+    setResult(function(prev){
+      return temp*prev;
+    })
+  }
+
+  function onDivisionClick(){
+    setResult(function(prev){
+      return temp/prev;
+    })
+  }
+
+  function onPercentClick(){
+    setResult(function(){
+      return temp*0.01;
+    })
+  }
+
+  function onPlusMinusClick(){
+    setResult(function(){
+      return temp*-1;
+    })
+  }
+
+  function onZeroClick(){
+    setResult(function(){
+      return temp*10;
+    })
+  }
+
+  function onZeroZeroClick(){
+    setResult(function(){
+      return temp*100;
+    })
+  }
+
+  function onClearClick(){
+    setResult(function(){
+      return temp*0;
+    })
+  }
+
+  function onResultClick(){
+
+  }
+
+  return(
+    <CalculatorWrap>
+      <EmptySpace></EmptySpace>
+      <div>
+        <CalculatorResult>{result}</CalculatorResult>
+        <div style={{display:'flex',justifyContent:'space-evenly'}}>
+          <CalculatorNumber onClick={onClearClick}>AC</CalculatorNumber>
+          <CalculatorNumber onClick={onPlusMinusClick}>±</CalculatorNumber>
+          <CalculatorNumber onClick={onPercentClick}>%</CalculatorNumber>
+          <CalculatorNumber onClick={onDivisionClick}>÷</CalculatorNumber>
+        </div>
+        <div style={{display:'flex',justifyContent:'space-evenly'}}>
+          <CalculatorNumber onClick={()=> setTemp(1)}>1</CalculatorNumber>
+          <CalculatorNumber onClick={()=> setTemp(2)}>2</CalculatorNumber>
+          <CalculatorNumber onClick={()=> setTemp(3)}>3</CalculatorNumber>
+          <CalculatorNumber onClick={onTimesClick}>×</CalculatorNumber>
+        </div>
+        <div style={{display:'flex',justifyContent:'space-evenly'}}>
+          <CalculatorNumber onClick={()=> setTemp(4)}>4</CalculatorNumber>
+          <CalculatorNumber onClick={()=> setTemp(5)}>5</CalculatorNumber>
+          <CalculatorNumber onClick={()=> setTemp(6)}>6</CalculatorNumber>
+          <CalculatorNumber onClick={onMinusClick}>-</CalculatorNumber>
+        </div>
+        <div style={{display:'flex',justifyContent:'space-evenly'}}>
+          <CalculatorNumber onClick={()=> setTemp(7)}>7</CalculatorNumber>
+          <CalculatorNumber onClick={()=> setTemp(8)}>8</CalculatorNumber>
+          <CalculatorNumber onClick={()=> setTemp(9)}>9</CalculatorNumber>
+          <CalculatorNumber onClick={onPlusClick}>+</CalculatorNumber>
+        </div>
+        <div style={{display:'flex',justifyContent:'space-evenly'}}>
+          <CalculatorNumber onClick={onZeroClick}>0</CalculatorNumber>
+          <CalculatorNumber onClick={onZeroZeroClick}>00</CalculatorNumber>
+          <CalculatorNumber>.</CalculatorNumber>
+          <CalculatorNumber onClick={onResultClick}>=</CalculatorNumber>
+        </div>
+      </div>
+    </CalculatorWrap>
+  );
+}
+
+export default App;
+
